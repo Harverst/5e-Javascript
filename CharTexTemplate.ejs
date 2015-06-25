@@ -1,0 +1,46 @@
+\subsection*{<%= name %> - AC <%= ac %> - Perception <%= perception %>}\index{<%= name %>}
+\begin{multicols}{2}
+[\textit{<%= desc %>}]
+\begin{tabular}{cccccc}
+<% if(saving.str) { %>\textcolor{saving}<% } %> {STR}&
+<% if(saving.dex) { %>\textcolor{saving}<% } %> {DEX}&
+<% if(saving.con) { %>\textcolor{saving}<% } %> {CON}&
+<% if(saving.int) { %>\textcolor{saving}<% } %> {INT}&
+<% if(saving.wis) { %>\textcolor{saving}<% } %> {WIS}&
+<% if(saving.cha) { %>\textcolor{saving}<% } %> {CHA}\\
+\hline
+<%= aScore.str %> & <%= aScore.dex %> & <%= aScore.con %> & <%= aScore.int %> & <%= aScore.wis %> & <%= aScore.cha %>\\
+<%= mod.str %> & <%= mod.dex %> & <%= mod.con %> & <%= mod.int %> & <%= mod.wis %> & <%= mod.cha %>
+\end{tabular}
+\textbf{Skills:} <% for(var i = 0; i < skills.length; i++) {
+if(i < skills.length-1 && i > 0) { %>, <% }
+if(i == skills.length-1 && i > 0) { %>, and <% } %>
+<%= skills[i] %><% if(i == skills.length-1) { %>.<% }} %>\\
+\textbf{Hit Dice:} <%= hitDice %>\\
+\textbf{Alignment:} <%= alignment %>\\
+\textbf{Languages:} <% for(var i = 0; i < lang.length; i++) {
+if(i < lang.length-1 && i > 0) { %>, <% }
+if(i == lang.length-1 && i > 0) { %>, and <% } %>
+<%= lang[i] %><% if(i == lang.length-1) { %>.<% }} %>\\<% if(abil.length > 0) { %>
+\textbf{Abilities:}
+\begin{itemize}[nosep]
+<% for(var e in abil) { %>
+    \item <%= abil[e] %>
+<% } %>
+\end{itemize}
+<% } %>
+<% if(equip.length > 0) { %>
+\begin{tabular}{p{0.7\columnwidth} r}
+\textbf{Equipment} & lbs\\
+\hline
+<% for(var e in equip) { %>
+<%= equip[e].name %> & <%= equip[e].weight %>\\
+<% } %>
+\hline
+Total & <%= totalWeight %>
+\end{tabular}
+<% } %>
+
+\end{multicols}
+<% if(attacks.length > 0) { %>\subsubsection*{Attacks}<% } %>
+<% for(var a in attacks) { %>\textbf{<%= attacks[a].name %>:} <%= attacks[a].desc %>\\<% } %>

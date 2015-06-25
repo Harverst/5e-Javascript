@@ -1,0 +1,27 @@
+<html>
+  <head>
+  <object style="display: none;" data="CharTexTemplate.ejs" id="template" type="template"></object>
+  <script src="ejs.js"></script>
+  <script src="TexCharBuilder.js"></script>
+  
+  </head>
+  <input id="fileDialog" type="file" />
+  <button id="build" >Build Tex</button>
+  
+  
+  <script>
+  var file = null;
+  if (window.File && window.FileReader && window.FileList && window.Blob) {
+    var handleFileSelect = function(evt) {
+      file = evt.target.file;
+      console.log(file);
+    }
+    document.getElementById('fileDialog').addEventListener('change', handleFileSelect, false);
+    var build
+    
+    
+  } else {
+    alert('The File APIs are not fully supported in this browser.');
+  }
+  </script>
+</html>
